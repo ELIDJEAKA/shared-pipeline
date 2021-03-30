@@ -9,8 +9,6 @@ extends:
   template: pipeline-shared.yml
 
 stages:
-  # - stage: BuildCodeSource
-  #     template: pipeline-shared.yml
   - stage: DeployOnVM
     # dependsOn: BuildCodeSource
     displayName: Deployment on VM 
