@@ -22,7 +22,7 @@ stages:
             steps:
             - script: |
                 pwd
-                ls -a
+                ls -al
                 # #rm -fR $(deploy_path)/*
                 # cp -R $(Pipeline.Workspace)/ArtefactTest/* $(deploy_path)
                 # #rm -fR $(Pipeline.Workspace)/ArtefactTest/*
