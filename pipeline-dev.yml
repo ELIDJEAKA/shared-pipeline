@@ -5,8 +5,8 @@ trigger:
 # Do not trigger builds on PRs
 pr: none
 
-extends:
-  template: pipeline-shared.yml
+# extends:
+#   template: pipeline-shared.yml
 
 stages:
   - stage: BuildCodeSource
