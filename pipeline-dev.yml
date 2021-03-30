@@ -9,10 +9,11 @@ extends:
   template: pipeline-shared.yml
 
 stages:
-  # - stage: BuildCodeSource
-  #     template: pipeline-shared.yml
+  - stage: BuildCodeSource
+    jobs:
+    - template: pipeline-shared.yml
   - stage: DeployOnVM
-    # dependsOn: BuildCodeSource
+    dependsOn: BuildCodeSource
     displayName: Deployment on VM 
     jobs:
     - deployment: DeployWeb
