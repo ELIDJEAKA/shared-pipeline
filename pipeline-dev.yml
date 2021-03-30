@@ -10,27 +10,27 @@ pr: none
 
 stages:
   - stage: BuildCodeSource
-        template: pipeline-shared.yml
+      template: pipeline-shared.yml
   - stage: DeployOnVM
-        dependsOn: BuildCodeSource
-        displayName: Deployment on VM 
-        jobs:
-        - deployment: DeployWeb
-          displayName: deploy ETL App
-  #       pool:
-  #         vmImage: 'Ubuntu-latest'        
-          environment:
-            name: DEV
-            resourceType: VirtualMachine
-          strategy:
-            runOnce:
-              deploy:
-                steps:
-                - script: |
-                    rm -fR $(deploy_path)/*
-                    cp -R $(Pipeline.Workspace)/ArtefactTest/* $(deploy_path)
-                    rm -fR $(Pipeline.Workspace)/ArtefactTest/*
-                    # restore keys
-                    cp $HOME/config/masterconfig.py $(deploy_path)/refresh/config/masterconfig.py
-                    chmod -R 777 $(deploy_path)/*
-                    ls -a $(deploy_path)
+    dependsOn: BuildCodeSource
+    displayName: Deployment on VM 
+    jobs:
+    - deployment: DeployWeb
+      displayName: deploy ETL App
+#       pool:
+#         vmImage: 'Ubuntu-latest'        
+      environment:
+        name: DEV
+        resourceType: VirtualMachine
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - script: |
+                rm -fR $(deploy_path)/*
+                cp -R $(Pipeline.Workspace)/ArtefactTest/* $(deploy_path)
+                rm -fR $(Pipeline.Workspace)/ArtefactTest/*
+                # restore keys
+                cp $HOME/config/masterconfig.py $(deploy_path)/refresh/config/masterconfig.py
+                chmod -R 777 $(deploy_path)/*
+                ls -a $(deploy_path)
