@@ -1,5 +1,30 @@
 trigger: none
 pr: none
 
-extends:
-  template: pipeline-shared.yml
+stages:
+  - stage: BuildCodeSource
+    jobs:
+    - template: pipeline-shared.yml
+  - stage: DeployOnVM
+    dependsOn: BuildCodeSource
+    displayName: Deployment on VM 
+    jobs:
+    - deployment: DeployWeb
+      displayName: deploy ETL App
+#       pool:
+#         vmImage: 'Ubuntu-latest'        
+      environment:
+        name: PROD
+        resourceType: VirtualMachine
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - script: |
+                #rm -fR $(deploy_path)/*
+                cp -R $(Pipeline.Workspace)/ArtefactTest/* $(deploy_path)
+                #rm -fR $(Pipeline.Workspace)/ArtefactTest/*
+                # restore keys
+                cp $HOME/config/masterconfig.py $(deploy_path)/refresh/config/masterconfig.py
+                chmod -R 777 $(deploy_path)/*
+                ls -a $(deploy_path)
