@@ -10,7 +10,7 @@ pr: none
 
 stages:
   - stage: BuildCodeSource
-      template: pipeline-shared.yml
+    template: pipeline-shared.yml
   - stage: DeployOnVM
     dependsOn: BuildCodeSource
     displayName: Deployment on VM 
