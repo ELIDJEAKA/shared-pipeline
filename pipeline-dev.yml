@@ -5,14 +5,14 @@ trigger:
 # Do not trigger builds on PRs
 pr: none
 
-# extends:
-#   template: pipeline-shared.yml
+extends:
+  template: pipeline-shared.yml
 
 stages:
-  - stage: BuildCodeSource
-      template: pipeline-shared.yml
+  # - stage: BuildCodeSource
+  #     template: pipeline-shared.yml
   - stage: DeployOnVM
-    dependsOn: BuildCodeSource
+    # dependsOn: BuildCodeSource
     displayName: Deployment on VM 
     jobs:
     - deployment: DeployWeb
