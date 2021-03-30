@@ -24,7 +24,7 @@ stages:
                 pwd
                 ls -al
                 # #rm -fR $(deploy_path)/*
-                cp -R $(Pipeline.Workspace)/ArtefactTest/* /home/elidjeaka/project/devops/azure/deploy
+                #cp -R $(Pipeline.Workspace)/ArtefactTest/* /home/elidjeaka/project/devops/azure/deploy
                 # #rm -fR $(Pipeline.Workspace)/ArtefactTest/*
                 # # restore keys
                 # cp $HOME/config/masterconfig.py $(deploy_path)/refresh/config/masterconfig.py
