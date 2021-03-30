@@ -12,7 +12,7 @@ stages:
   - stage: BuildCodeSource
         template: pipeline-shared.yml
   - stage: DeployOnVM
-        dependsOn: pipeline-shared.yml
+        dependsOn: BuildCodeSource
         displayName: Deployment on VM 
         jobs:
         - deployment: DeployWeb
