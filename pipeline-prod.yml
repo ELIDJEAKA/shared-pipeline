@@ -1,0 +1,7 @@
+trigger:
+  - master
+
+pr: none
+
+extends:
+  template: pipeline-shared.yml

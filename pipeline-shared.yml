@@ -1,0 +1,31 @@
+stages:
+  - stage: BuildCodeSource
+    displayName: Get github code source
+    jobs:
+    - job: buildJob
+      displayName: Build first job
+      steps:
+      ## Git checkout master (clone repository)
+      - checkout: self
+      ## Use credential git credential for pulling files 
+        persistCredentials: true
+      - task: UsePythonVersion@0
+        inputs:
+          versionSpec: '3.7'
+        displayName: 'Use Python 3.7'
+
+      - script: |
+          #python -m pip install --upgrade pip
+          #pip install -r requirements.txt
+          ls -a
+        displayName: 'Install dependencies'
+      - task: CopyFiles@2
+        displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'  
+        inputs:  
+          Contents: 'with'
+          TargetFolder: '$(Build.ArtifactStagingDirectory)'
+      - task: PublishBuildArtifacts@1 
+        displayName: 'Publish Artefact' 
+        inputs:  
+          pathToPublish: $(Build.ArtifactStagingDirectory)  
+          artifactName: ArtefactTest
