@@ -28,10 +28,12 @@ stages:
           deploy:
             steps:
             - script: |
-                #rm -fR $(deploy_path)/*
-                cp -R $(Pipeline.Workspace)/ArtefactTest/* $(deploy_path)
-                #rm -fR $(Pipeline.Workspace)/ArtefactTest/*
-                # restore keys
-                cp $HOME/config/masterconfig.py $(deploy_path)/refresh/config/masterconfig.py
-                chmod -R 777 $(deploy_path)/*
-                ls -a $(deploy_path)
+                pwd
+                # #rm -fR $(deploy_path)/*
+                # cp -R $(Pipeline.Workspace)/ArtefactTest/* $(deploy_path)
+                # #rm -fR $(Pipeline.Workspace)/ArtefactTest/*
+                # # restore keys
+                # cp $HOME/config/masterconfig.py $(deploy_path)/refresh/config/masterconfig.py
+                # chmod -R 777 $(deploy_path)/*
+                # ls -a $(deploy_path)
+                
