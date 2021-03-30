@@ -19,7 +19,7 @@ jobs:
   - task: CopyFiles@2
     displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'  
     inputs:  
-      Contents: 'with'
+      Contents: '*'
       TargetFolder: '$(Build.ArtifactStagingDirectory)'
   - task: PublishBuildArtifacts@1 
     displayName: 'Publish Artefact' 
